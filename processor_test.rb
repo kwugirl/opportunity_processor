@@ -12,6 +12,14 @@ class ProcessorTest < Minitest::Test
     assert_equal expected, opportunity.to_s
   end
 
+  def test_parse_line_into_opportunity
+    opportunity = Opportunity.new(title: "Lead Chef", org: "Chipotle", location: "Denver, CO",
+                                  min_pay: 10, max_pay: 15)
+    line = "Lead Chef, Chipotle, Denver, CO, 10, 15"
+
+    assert_equal opportunity, Processor.parse_line(line)
+  end
+
   # def test_return_exact_expected_output
   #   expected = <<~eos
   #     All Opportunities
